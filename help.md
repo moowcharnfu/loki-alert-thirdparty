@@ -2,8 +2,8 @@
 # 参考 https://grafana.com/docs/loki/latest/configuration/
 
 1. 基于docker正常搭建 loki+grafana+prometheus+.. 系统
-lokigateway <>   loki-read (grafana + alert rules告警)   <>  promrtheus  > alertmanagement > webhook-adapter(国内通讯软件代理器 钉钉/企业微信/个人微信等)
-            >   loki-write (接收promtail日志并写入)    
+loki-gateway <> loki-read (grafana + alert rules告警) <>  promrtheus > alertmanagement > webhook-adapter(国内通讯软件代理器 钉钉/企业微信/个人微信等)
+loki-gateway >   loki-write (接收promtail日志并写入)  >  promrtheus  
 
 2. loki配置注意事项  (memberlist + inmemory)
 
