@@ -1,0 +1,19 @@
+groups:
+  # 组名称
+  - name: 服务错误持续5分钟告警规则
+    rules:
+      # 告警名
+      - alert: 服务错误持续5分钟告警
+        # logQL查询语句
+        # 5分钟内错误出现 1%
+        expr: sum(rate({job="info"} |= "ERROR" [5m])) by (job) /  sum(rate({job="info"} [5m])) by (job) > 0.01
+        # 产生告警的持续时间
+        for: 10m
+        # 自定义标签
+        labels:
+          user: 业务线
+          severity: critical
+        # 描述
+        annotations:
+          summary: "服务错误持续5分钟 !!!"
+          description: "该服务产生错误持续5分钟了。"

@@ -1,0 +1,18 @@
+groups:
+# 组名称
+- name: 实例存活告警规则
+  rules:
+  # 告警名
+  - alert: 实例存活告警
+    # logQL查询语句
+    expr: up == 0
+    # 产生告警的持续时间
+    for: 1m
+    # 自定义标签
+    labels:
+      user: prometheus
+      severity: warning
+    # 描述
+    annotations:
+      summary: "主机宕机 !!!"
+      description: "该实例主机已经宕机超过一分钟了。"

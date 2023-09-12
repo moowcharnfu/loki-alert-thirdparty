@@ -1,0 +1,17 @@
+groups:
+# 组名称
+- name: 磁盘使用率报警规则
+  rules:
+  # 告警名
+  - alert: 磁盘使用率告警
+    # logQL查询语句
+    expr: 100 - node_filesystem_free_bytes{fstype=~"xfs|ext4"} / node_filesystem_size_bytes{fstype=~"xfs|ext4"} * 100 > 80
+    # 产生告警的持续时间
+    for: 20m
+    # 自定义标签
+    labels:
+      severity: warning
+    # 描述
+    annotations:
+      summary: "硬盘分区使用率过高"
+      description: "分区使用大于80%（当前值：{{ $value }}%）"
