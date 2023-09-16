@@ -18,8 +18,12 @@ loki-gateway >   loki-write (接收promtail日志并写入)  >  promrtheus
   alertmanager.yaml增加/wx_personal方式(或者/wx或者/dingtalk)
       route:
         receiver: 'default-receiver'
+        # 发送前等待30秒
         group_wait: 30s
-        group_interval: 30m
+        # 3分钟发送一次
+        group_interval: 3m
+        # 10分钟后开始新的一轮发送
+        repeat_interval: 10m
         group_by: [ alertname ]
       
       receivers:
